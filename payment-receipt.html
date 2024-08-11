@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Student Payment Slip</title>
+    <!--Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khojki&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <!--Jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <!--SweetAlart cdn-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -ms-overflow-style: none;
+  /* padding: 20px;
+  background: rgb(130, 106, 251); */
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.container .head, .credit, .col_sig, #stdCopy {
+  display: none;
+}
+.container header {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+.container .form {
+  margin-top: 30px;
+}
+.form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.input-box label {
+  color: #333;
+}
+.form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.form :where(.input-box1 input, .select-box){
+  position: relative;
+  height: 50px;
+  width: 96%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.form .column {
+  display: flex;
+  column-gap: 15px;
+}
+.select-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+}
+.form .btn {
+  height: 55px;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  border-radius: 8px;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(130, 106, 251);
+}
+.form .btn:hover {
+  background: rgb(88, 56, 250);
+}
+.search{
+  font-size: 20px;
+  width: 35px;
+  height: 45px;
+  float: right;
+  margin-top: 10px;
+  margin-right: -25px;
+  padding-bottom: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px 10px 10px 10px;
+  border: 2px solid dodgerblue;
+  color: #000000;
+  background: #fff;
+  transition: all 0.4s ease-in-out;
+}
+.search:hover{
+  font-size: 15px;
+  color: #fff;
+  background-color: dodgerblue;
+}
+@media print{
+*{
+  font-family: "Noto Sans Khojki", sans-serif;
+  font-style: normal;
+}  
+.container {
+  box-shadow: none;
+}
+.container .form {
+  margin-top: -30px;
+}
+#rol_no {
+  display: none;
+} 
+.col_sig, #stdCopy {
+  display: block;
+}
+.container .head{
+  display: block;
+  /*margin-bottom: 100px;*/
+}
+.container .head img{
+  width: 100px;
+  height: 100px;
+  margin-top: 0px;
+}
+.container .head h1{
+  font-size: 1.5rem;
+  color: dodgerblue;
+  padding: 8px 0px;
+  text-align: center;
+  margin-top: -140px;
+  margin-left: 200px;
+}
+.container .head p{
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 2px 0px;
+  margin-left: 200px;
+  margin-top: -10px;
+}
+.form .input-box {
+  margin-top: -5px;
+}
+.form :where(.input-box input, .select-box) {
+  width: 65%;
+ }
+.form :where(.input-box1 input, .select-box){
+  width: 65%;
+ }
+.form input::placeholder{
+  display: none;
+ }
+.input-box input {
+  border: none;
+ }
+.column input {
+  border: none;
+ }
+ header {
+   display: none;
+ }
+.form .search, .btn{
+  display: none;
+ }
+.input-box input{
+  font-size: 1.1rem;
+} 
+.input-box label, .input-box1 label {
+  font-size: 1.1rem;
+ }
+/*.form .input-box #pass, #inv_no, #val, #rol_no{
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+ }*/
+.form .input-box span{
+  display: block;
+  padding: 20px 0px;
+ }
+.container .credit{
+  font-size: 0.6rem;
+  display: block;
+  margin-top: 27px;
+ }
+.container .credit .name{
+  float: right;
+  margin-top: -20px;
+ }
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+  .form .column {
+    flex-wrap: wrap;
+  }
+  .form :where(.gender-option, .gender) {
+    row-gap: 15px;
+  }
+}      
+</style>
+
+<script>
+var AppsScriptLink = "https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec";
+
+
+function GetPrint()
+{
+    /*For Print*/
+    window.print();
+}
+
+function BtnAdd()
+{
+    /*Add Button*/
+    var v = $("#TRow").clone().appendTo("#TBody") ;
+    $(v).find("input").val('');
+    $(v).removeClass("d-none");
+    $(v).find("th").first().html($('tr').length - 2);
+}
+
+function BtnDel(v)
+{
+    /*Delete Button*/
+    $(v).parent().parent().remove();
+    GetTotal();
+    ReGenSrNo();
+}
+
+function ReGenSrNo()
+{
+     $("#TBody").find("tr").each(
+     function(index)
+     {
+          $(this).find("th").first().html(index);
+     }
+     );
+}
+
+function Calc(v)
+{
+    /*Detail Calculation Each Row*/
+    var index = $(v).parent().parent().index();
+
+    var qty = document.getElementsByName("qty")[index].value;
+    var rate = document.getElementsByName("rate")[index].value;
+
+    var amt = qty * rate;
+    document.getElementsByName("amt")[index].value = amt;
+
+    GetTotal();
+}
+
+function GetTotal()
+{
+    /*Footer Calculation*/  
+
+    var sum=0;
+    var amts =  document.getElementsByName("amt");
+
+    for (let index = 0; index < amts.length; index++)
+    {
+        var amt = amts[index].value;
+        sum = +(sum) +  +(amt) ;
+    }
+
+    document.getElementById("FTotal").value = sum;
+
+    var gst =  document.getElementById("FGST").value;
+    var net = +(sum) + +(gst);
+    document.getElementById("FNet").value = net;
+
+
+}
+
+
+
+
+
+
+
+$(document).ready(function () {
+    FormValidation();
+    SetCurrentDate();
+    BtnAdd();
+    FillDataList();
+    MaxInv();
+      
+       
+});
+
+function FillDataList()
+{
+  $.getJSON("https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec?page=dropdown",
+
+    function(data) {
+
+      var Options = "";
+
+      $.each(data, function(key, value)
+      {
+        Options = Options + '<option>' + value + '</option>';
+      });
+
+      $("#mylist").append(Options);
+
+    });
+}
+
+
+
+function MaxInv()
+{
+  $.getJSON("https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec?page=max",
+    function(data) {
+
+      $("input[name='inv_no']").val(data);
+
+    });
+}
+
+
+function SetCurrentDate()
+{
+  const date = new Date();
+  console.log(date);
+
+  let d = date.getDate();
+  let m = date.getMonth() + 1;
+  let y = date.getFullYear();
+
+  if (d < 10) d = '0' + d;
+  if (m < 10) m = '0' + m;
+
+  let CurrDate = y + '-' + m + '-' + d;
+
+  $('input[name="isu_dt"]').val(CurrDate);
+
+}
+
+function FormValidation()
+{
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+}
+
+function Search(pNo = "")
+{
+  var no = $('#rol_no').val();
+
+  if (pNo != "") no = pNo;
+
+  $.getJSON("https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec?page=search&no=" + no,
+    function(data) {
+
+
+      //alert(data);
+      // console.log(data);
+      if (data == "NOT FOUND")
+      {
+        swal({
+          title: "Not Found!",
+          text: "Trnx Id not found.",
+          icon: "error",
+        });
+
+      }
+      else
+      {
+        swal({
+          title: "Found!",
+          text: "Trnx Id data found",
+          icon: "success",
+        });
+        //var record = data;
+        var record = data.record;
+
+        var StartRow = data.SR;
+        var RowCount = data.CNT;
+
+        $('#IsNew').val('N');
+        $('#StartRow').val(StartRow);
+        $('#RowCount').val(RowCount);
+
+        var i = 0;
+        $.each(record, function(key, value)
+        {
+
+          if (i == 0)
+          {
+           
+            document.getElementsByName("trn_id")[0].value = value[1];
+            document.getElementsByName("date")[0].value = value[2];
+            document.getElementsByName("time")[0].value = value[3];
+            document.getElementsByName("mode")[0].value = value[4];
+            document.getElementsByName("ad_no")[0].value = value[5];
+            document.getElementsByName("name")[0].value = value[6];
+            document.getElementsByName("cls")[0].value = value[7];
+            document.getElementsByName("ttp")[0].value = value[8];
+            document.getElementsByName("pay")[0].value = value[9];
+            document.getElementsByName("dis")[0].value = value[10];
+            document.getElementsByName("due")[0].value = value[11];
+            document.getElementsByName("msg")[0].value = value[12];
+            
+            document.getElementsByName("trn_id1")[0].value = value[13];
+            document.getElementsByName("date1")[0].value = value[14];
+            document.getElementsByName("time1")[0].value = value[15];
+            document.getElementsByName("mode1")[0].value = value[16];
+            document.getElementsByName("ad_no1")[0].value = value[17];
+            document.getElementsByName("name1")[0].value = value[18];
+            document.getElementsByName("cls1")[0].value = value[19];
+            document.getElementsByName("ttp1")[0].value = value[20];
+            document.getElementsByName("pay1")[0].value = value[21];
+            document.getElementsByName("dis1")[0].value = value[22];
+            document.getElementsByName("due1")[0].value = value[23];
+            document.getElementsByName("msg1")[0].value = value[24];
+          }
+          else
+          {
+            if (i > 1) BtnAdd();
+
+
+            document.getElementsByName("item_nm")[i].value = value[5];
+            document.getElementsByName("qty")[i].value = value[6];
+            document.getElementsByName("rate")[i].value = value[7];
+            document.getElementsByName("amt")[i].value = value[8];
+
+          }
+
+          i = i + 1;
+        });
+
+        GetTotal();
+        ReGenSrNo();
+
+      }
+    });
+  $('#exampleModal').modal('hide');
+
+}
+
+function ShowAllData()
+{
+	$(document).ready(function (){
+		
+		$.getJSON("https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec?page=all",
+        function (data) {
+	
+		var Table="", Rows="", Columns="";
+		$.each(data, function(key, value)
+		{
+			var InvNo="";
+			Columns ="";
+			i=0;
+			$.each(value, function(key1, value1)
+			{
+				i++;
+				if (i ==2) 
+				{
+					value1 = "" + value1;
+					value1 = value1.substring(0, 10);	
+				}
+				Columns = Columns + '<td>' + value1 + '</td>';
+				if (InvNo == "") InvNo = value1;
+				
+				
+			});
+			Rows = Rows + '<tr onclick="Search('+InvNo+')">' + Columns + '</tr>';
+		});
+		
+		$("#MyTBody").html(Rows);
+		$('#exampleModal').modal('show');
+	});	
+	});			
+
+}
+
+$(document).ready(function() {
+  // Intercept form submission
+  $("#studentForm").submit(function(event) {
+    event.preventDefault(); // Prevent default form submission
+    var form = $(this);
+
+    // Submit form data using AJAX
+    $.ajax({
+      type: form.attr("method"),
+      url: form.attr("action"),
+      data: form.serialize(),
+      success: function(response) {
+        // Display success message as a popup
+        swal({
+          title: "Success!",
+          text: "Data submitted successfully",
+          icon: "success"
+        });
+        // Optionally, reset the form
+        form.trigger("reset");
+      },
+      error: function(xhr, status, error) {
+        // Handle errors if any
+        console.error(xhr.responseText);
+        // Optionally, display an error message
+        swal({
+          title: "Success!",
+          text: "",
+          icon: "success"
+        });
+      }
+    });
+  });
+});
+</script>
+    
+  </head>
+  <body>
+    <section class="container">
+      <header> Student Payment Receipt</header>
+      <form method="POST" action="https://script.google.com/macros/s/AKfycbx_S3ZDISYZeTj-kgvV3IywGAoI6deUt7bVMhEzyKaKcUIS1SidkOgokB5NYO7fCNDg/exec" class="form" id="studentForm">
+          <div class="input-box1" style="width: 100%;">
+            <input type="number" id="rol_no" name="rol_no" placeholder="Search Sl No" autofocus required />
+            <button class="search" type="submit" onclick="Search();">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="head">
+          <img src="logo.png" alt="loading...">
+          <h1>Holy Care Model High School</h1>
+          <p>Establish : 2011</p>
+          <p>EIIN : 139945</p>
+          <p>Khurushkul, Sadar, Cox's Bazar</p>
+          <p style="font-size: 1rem; font-weight: 600;">Payment Recipt (Office Copy)</p>
+        </div>
+        <div class="column">
+          <div class="input-box">
+            <label>Date:</label>
+            <input type="text" id="date" name="date" disabled />
+          </div>
+          <div class="input-box">
+            <label>Time:</label>
+            <input type="text" id="time" name="time" disabled />
+          </div>
+        </div>
+        <div class="column">  
+          <div class="input-box">
+            <label>Name:</label>
+            <input type="text" id="name" name="name" disabled />
+          </div>
+          <div class="input-box">
+            <label>Id No:</label>
+            <input type="text" id="ad_no" name="ad_no" disabled />
+          </div>
+        </div>
+
+        <div class="column">  
+          <div class="input-box">
+            <label>Class:</label>
+            <input type="text" id="cls" name="cls" disabled />
+          </div>
+          <div class="input-box">
+            <label>Trnx Id:</label>
+            <input type="text" id="trn_" name="trn_id" style="font-weight: 600;" disabled />
+          </div>
+        </div>
+        
+        <div style="display: none;" class="column">
+          <div class="input-box">
+            <label>Mode:</label>
+            <input type="text" id="mode" name="mode" disabled />
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="input-box">
+            <label>Total:</label>
+            <input type="text" id="ttp" name="ttp" disabled />
+          </div>
+          <div class="input-box">
+            <label>Pay:</label>
+            <input type="text" id="pay" name="pay" disabled />
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="input-box">
+            <label>Discount:</label>
+            <input type="text" id="dis" name="dis" disabled />
+          </div>
+          <div class="input-box">
+            <label>Due:</label>
+            <input type="text" id="due" name="due" disabled />
+          </div>
+        </div>
+        
+          <div style="display: none;" class="input-box">
+            <label>Note:</label>
+            <input type="text" id="msg" name="msg" disabled />
+          </div>
+          <div class="input-box col_sig">
+            <label>Collector Sign:</label>
+            <input type="text" id="col_sig" name="col_sig" disabled />
+          </div>
+
+
+          <br><hr><br><br>
+
+
+        <div id="stdCopy">
+          <div class="head">
+            <img src="logo.png" alt="loading...">
+            <h1>Holy Care Model High School</h1>
+            <p>Establish : 2011</p>
+            <p>EIIN : 139945</p>
+            <p>Khurushkul, Sadar, Cox's Bazar</p>
+            <p style="font-size: 1rem; font-weight: 600;">Payment Recipt (Student Copy)</p>
+          </div>
+          <div class="column">
+            <div class="input-box">
+              <label>Date:</label>
+              <input type="text" id="date1" name="date1" />
+            </div>
+            <div class="input-box">
+              <label>Time:</label>
+              <input type="text" id="time1" name="time1" />
+            </div>
+          </div>
+            <div class="column">  
+              <div class="input-box">
+                <label>Name</label>
+                <input type="text" id="name1" name="name1" />
+              </div>
+              <div class="input-box">
+                <label>Id No:</label>
+                <input type="text" id="ad_no1" name="ad_no1" />
+              </div>
+            </div>
+    
+            <div class="column">  
+              <div class="input-box">
+                <label>Class:</label>
+                <input type="text" id="cls1" name="cls1" />
+              </div>
+              <div class="input-box">
+                <label>Trnx Id:</label>
+                <input type="text" id="trn_id1" name="trn_id1" style="font-weight: 600;" />
+              </div>
+            </div>
+        
+        <div style="display: none;" class="column">
+          <div class="input-box">
+            <label>Mode:</label>
+            <input type="text" id="mode1" name="mode1" />
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="input-box">
+            <label>Total:</label>
+            <input type="text" id="ttp1" name="ttp1" />
+          </div>
+          <div class="input-box">
+            <label>Pay:</label>
+            <input type="text" id="pay1" name="pay1" />
+          </div>
+        </div>
+        
+        <div class="column">
+          <div class="input-box">
+            <label>Discount:</label>
+            <input type="text" id="dis1" name="dis1" />
+          </div>
+          <div class="input-box">
+            <label>Due:</label>
+            <input type="text" id="due1" name="due1" />
+          </div>
+        </div>
+        
+          <div style="display: none;" class="input-box">
+            <label>Note:</label>
+            <input type="text" id="msg1" name="msg1" />
+          </div>
+          <div class="input-box">
+            <label>Collector Sign:</label>
+            <input type="text" id="col_sig1" name="col_sig1" />
+          </div>
+        </div>
+        
+          <div class="credit">
+            <p id="dateTime"></p>
+            <p class="name">Powered By-APC</p>
+          </div>
+        
+        <input type="hidden" id="IsNew" name="IsNew" value="Y">
+        <input type="hidden" id="StartRow" name="StartRow" value="0">
+        <input type="hidden" id="RowCount" name="RowCount" value="0">
+
+          
+
+        <button type="button" class="btn btn-primary float-end" onclick="GetPrint()">Print</button>
+      </form>
+    </section>
+    
+    
+    
+    <script>
+      // Get current date
+      const currentDate = new Date();
+      
+      // Format full date (e.g., "Monday, March 22, 2024")
+      const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const fullDate = currentDate.toLocaleDateString('en-US', optionsDate);
+      
+      // Format full time (e.g., "11:30:00 AM")
+      const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      const fullTime = currentDate.toLocaleTimeString('en-US', optionsTime);
+      
+      // Display full date and full time in one line
+      const dateTime = "Printed On: " + fullDate + " " + fullTime;
+      document.getElementById('dateTime').textContent = dateTime;
+    </script>
+    
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>  
+    
+  </body>
+</html>
