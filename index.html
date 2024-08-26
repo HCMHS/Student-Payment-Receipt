@@ -63,7 +63,7 @@ body {
 .input-box label {
   color: #333;
 }
-.form :where(.input-box input, .select-box) {
+.form :where(.input-box input, .select-box), .form :where(.input-box-msg input, .select-box) {
   position: relative;
   height: 50px;
   width: 100%;
@@ -189,10 +189,13 @@ body {
 .form :where(.input-box1 input, .select-box){
   width: 65%;
  }
+ .form :where(.input-box-msg input, .select-box) {
+  width: 90%;
+ }
 .form input::placeholder{
   display: none;
  }
-.input-box input {
+.input-box input, .input-box-msg input {
   border: none;
  }
 .column input {
@@ -651,7 +654,7 @@ $(document).ready(function() {
           </div>
         </div>
         
-          <div class="input-box">
+          <div class="input-box-msg">
             <label>Note:</label>
             <input type="text" id="msg" name="msg" disabled />
           </div>
